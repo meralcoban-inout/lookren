@@ -11,73 +11,50 @@
   opacity: 0 !important;
   pointer-events: none !important;
 }
-
-/* --- TABLO KART YAPISI --- */
+/* Tablo yerleşimini sabit (fixed) yaparak genişlik zorlamasını aktif edin */
 .reportTable {
+  table-layout: fixed !important;
+  width: 100% !important;
   border-collapse: separate !important; 
   border-spacing: 0 6px !important; 
   background: transparent !important;
   border: none !important;
-  width: 100% !important;
-  table-layout: auto !important;
 }
 
-/* Başlık Hücreleri */
-.reportTable .headerRow th,
+/* 1. Sütun: Satır numarası (varsa dar tutulur) */
+.reportTable th.headerCell:nth-child(1),
+.reportTable td.rowCell:nth-child(1) {
+  width: 60px !important;
+  max-width: 60px !important;
+  text-align: center !important;
+}
+
+/* 2. Sütun: Server Workshop */
+.reportTable th.headerCell:nth-child(2),
+.reportTable td.rowCell:nth-child(2) {
+  width: 31% !important;
+}
+
+/* 3. Sütun: Server UAI */
+.reportTable th.headerCell:nth-child(3),
+.reportTable td.rowCell:nth-child(3) {
+  width: 31% !important;
+}
+
+/* 4. Sütun: Connection Statut */
+.reportTable th.headerCell:nth-child(4),
+.reportTable td.rowCell:nth-child(4) {
+  width: 31% !important;
+  text-align: right !important; /* İsteğe bağlı: Durum sütununu sağa yaslamak için */
+}
+
+/* Metin taşmalarını ve boşluk bozulmalarını engelleme */
 .reportTable th.headerCell,
-.reportTable th.headerCell div,
-.reportTable th.headerCell span {
-  text-align: left !important; 
-  justify-content: flex-start !important; 
-  align-items: center !important;
-  margin: 0 !important; 
-  padding: 6px 12px !important; 
-  background: transparent !important;
-  color: #0D1A63 !important; 
-  font-size: 12px !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important; 
-  border: none !important;
-  border-bottom: 2px solid #94a3b8 !important; 
-}
-
-/* Satır yüksekliği ve Hücreler */
-.reportTable tr {
-  height: 38px !important; /* Satırların devasa büyümesini engeller */
-}
-
 .reportTable td.rowCell {
-  background: #ffffff !important;
-  border: none !important;
-  padding: 6px 12px !important; 
-  border-top: 1px solid #94a3b8 !important;    
-  border-bottom: 1px solid #94a3b8 !important; 
-  color: #1e293b !important; 
-  font-family: 'Segoe UI', Roboto, sans-serif !important;
-  font-size: 11.5px !important;
-  font-weight: 500 !important;
-  text-align: left !important;
-  vertical-align: middle !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
   white-space: nowrap !important;
-  height: auto !important;
-  transition: background 0.2s ease !important;
-  outline: none !important;
-}
-
-/* İlk Sütun (Sol Kenarlık & Yuvarlama) */
-.reportTable td.rowCell:first-child {
-  border-left: 3px solid #94a3b8 !important; 
-  border-top-left-radius: 6px !important;
-  border-bottom-left-radius: 6px !important;
-}
-
-/* Son Sütun (Sağ Kenarlık, Yuvarlama ve Hata Rengi) */
-.reportTable td.rowCell:last-child {
-  border-right: 1px solid #94a3b8 !important; 
-  border-top-right-radius: 6px !important;
-  border-bottom-right-radius: 6px !important;
-  color: #b22222 !important;
-  font-weight: 700 !important;
+  box-sizing: border-box !important;
 }
 
 /* Hover Efekti */
