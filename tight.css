@@ -1,20 +1,5 @@
 /* --- BAŞLIK KARTI --- */
-div#visContainer::before {
-  content: "🔴 SERVER CONNECTION STATUS"; 
-  display: block; 
-  font-family: 'Segoe UI', Roboto, sans-serif !important;
-  font-size: 14.3px !important;
-  font-weight: 800 !important;
-  color: #0D1A63 !important; 
-  background: #f1f5f9 !important; 
-  padding: 6px 12px !important;
-  border-radius: 6px !important;
-  text-align: center !important;  
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); 
-}
+
 
 /* Tooltip ve Standart Başlığı Gizleme */
 #tooltip, 
@@ -34,6 +19,7 @@ div#visContainer::before {
   background: transparent !important;
   border: none !important;
   width: 100% !important;
+  table-layout: auto !important;
 }
 
 /* Başlık Hücreleri */
@@ -45,21 +31,25 @@ div#visContainer::before {
   justify-content: flex-start !important; 
   align-items: center !important;
   margin: 0 !important; 
-  padding: 8px 12px !important; 
+  padding: 6px 12px !important; 
   background: transparent !important;
   color: #0D1A63 !important; 
-  font-size: 12.2px !important;
+  font-size: 12px !important;
   font-weight: 700 !important;
   text-transform: uppercase !important; 
   border: none !important;
   border-bottom: 2px solid #94a3b8 !important; 
 }
 
-/* Gövde Hücreleri (Tüm Satırlar) */
+/* Satır yüksekliği ve Hücreler */
+.reportTable tr {
+  height: 38px !important; /* Satırların devasa büyümesini engeller */
+}
+
 .reportTable td.rowCell {
   background: #ffffff !important;
   border: none !important;
-  padding: 8px 12px !important; 
+  padding: 6px 12px !important; 
   border-top: 1px solid #94a3b8 !important;    
   border-bottom: 1px solid #94a3b8 !important; 
   color: #1e293b !important; 
@@ -68,43 +58,29 @@ div#visContainer::before {
   font-weight: 500 !important;
   text-align: left !important;
   vertical-align: middle !important;
-  transition: all 0.2s ease !important;
-  outline: none !important; /* Tıklama mavi çerçevesini kaldırır */
+  white-space: nowrap !important;
+  height: auto !important;
+  transition: background 0.2s ease !important;
+  outline: none !important;
 }
 
-/* Sol Kenar Yuvarlama (Satır No Sütunu) */
+/* İlk Sütun (Sol Kenarlık & Yuvarlama) */
 .reportTable td.rowCell:first-child {
   border-left: 3px solid #94a3b8 !important; 
-  border-top-left-radius: 8px !important;
-  border-bottom-left-radius: 8px !important;
+  border-top-left-radius: 6px !important;
+  border-bottom-left-radius: 6px !important;
 }
 
-/* Sağ Kenar Yuvarlama ve Durum Sütunu (Connection Statut) */
-.reportTable td.rowCell:nth-child(4),
+/* Son Sütun (Sağ Kenarlık, Yuvarlama ve Hata Rengi) */
 .reportTable td.rowCell:last-child {
   border-right: 1px solid #94a3b8 !important; 
-  border-top-right-radius: 8px !important;
-  border-bottom-right-radius: 8px !important;
-  color: #b22222 !important; /* Hata/Failed metni için kırmızı vurgu */
+  border-top-right-radius: 6px !important;
+  border-bottom-right-radius: 6px !important;
+  color: #b22222 !important;
   font-weight: 700 !important;
 }
 
-/* Boş Hücreleri Gizleme */
-.reportTable td.rowCell:empty,
-.reportTable th.headerCell:empty {
-  display: none !important;
-}
-
-/* --- HOVER & ETKİLEŞİM EFEKTLERİ --- */
-.reportTable tr:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 4px 10px rgba(148, 163, 184, 0.25) !important; 
-  transition: all 0.2s ease !important;
-}
-
+/* Hover Efekti */
 .reportTable tr:hover td.rowCell {
-  background: #fef2f2 !important; /* Hata listesi olduğu için hafif kırmızı hover arka planı */
+  background: #fef2f2 !important;
 }
-
-/* İsteğe bağlı: İlk 3 satırdan sonrasını gizlemek isterseniz alt satırın yorumunu kaldırın */
-/* .reportTable tr:nth-child(n+4) { display: none !important; } */
