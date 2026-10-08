@@ -1,6 +1,3 @@
-/* --- BAŞLIK KARTI --- */
-
-
 /* Tooltip ve Standart Başlığı Gizleme */
 #tooltip, 
 .looker-vis-tooltip, 
@@ -11,7 +8,8 @@
   opacity: 0 !important;
   pointer-events: none !important;
 }
-/* Tablo yerleşimini sabit (fixed) yaparak genişlik zorlamasını aktif edin */
+
+/* --- TABLO DÜZENİ (SABİT VE EŞİT DAĞILIM) --- */
 .reportTable {
   table-layout: fixed !important;
   width: 100% !important;
@@ -21,43 +19,89 @@
   border: none !important;
 }
 
-/* 1. Sütun: Satır numarası (varsa dar tutulur) */
-.reportTable th.headerCell:nth-child(1),
-.reportTable td.rowCell:nth-child(1) {
-  width: 60px !important;
-  max-width: 60px !important;
-  text-align: center !important;
+/* Satır Yüksekliği */
+.reportTable tr {
+  height: 40px !important;
 }
 
-/* 2. Sütun: Server Workshop */
-.reportTable th.headerCell:nth-child(2),
-.reportTable td.rowCell:nth-child(2) {
-  width: 31% !important;
-}
-
-/* 3. Sütun: Server UAI */
-.reportTable th.headerCell:nth-child(3),
-.reportTable td.rowCell:nth-child(3) {
-  width: 31% !important;
-}
-
-/* 4. Sütun: Connection Statut */
-.reportTable th.headerCell:nth-child(4),
-.reportTable td.rowCell:nth-child(4) {
-  width: 31% !important;
-  text-align: right !important; /* İsteğe bağlı: Durum sütununu sağa yaslamak için */
-}
-
-/* Metin taşmalarını ve boşluk bozulmalarını engelleme */
+/* Başlık Hücreleri Ortak Yapısı */
+.reportTable .headerRow th,
 .reportTable th.headerCell,
+.reportTable th.headerCell div,
+.reportTable th.headerCell span {
+  text-align: left !important; 
+  justify-content: flex-start !important; 
+  align-items: center !important;
+  margin: 0 !important; 
+  padding: 8px 12px !important; 
+  background: transparent !important;
+  color: #0D1A63 !important; 
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important; 
+  border: none !important;
+  border-bottom: 2px solid #94a3b8 !important; 
+}
+
+/* Veri Hücreleri Ortak Yapısı */
 .reportTable td.rowCell {
+  background: #ffffff !important;
+  border: none !important;
+  padding: 8px 12px !important; 
+  border-top: 1px solid #94a3b8 !important;    
+  border-bottom: 1px solid #94a3b8 !important; 
+  color: #1e293b !important; 
+  font-family: 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 500 !important;
+  vertical-align: middle !important;
+  transition: background 0.2s ease !important;
+  outline: none !important;
+  box-sizing: border-box !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
-  box-sizing: border-box !important;
 }
 
-/* Hover Efekti */
+/* --- SÜTUN GENİŞLİKLERİ VE EŞİTLEME --- */
+
+/* 1. Sütun: Server Workshop (%33.33) */
+.reportTable th.headerCell:nth-child(1),
+.reportTable td.rowCell:nth-child(1) {
+  width: 33.33% !important;
+  text-align: left !important;
+  border-left: 3px solid #94a3b8 !important; 
+  border-top-left-radius: 6px !important;
+  border-bottom-left-radius: 6px !important;
+}
+
+/* 2. Sütun: Server UAI (%33.33) */
+.reportTable th.headerCell:nth-child(2),
+.reportTable td.rowCell:nth-child(2) {
+  width: 33.33% !important;
+  text-align: left !important;
+}
+
+/* 3. Sütun: Connection Statut (%33.33) */
+.reportTable th.headerCell:nth-child(3),
+.reportTable td.rowCell:nth-child(3),
+.reportTable td.rowCell:last-child {
+  width: 33.33% !important;
+  text-align: left !important;
+  border-right: 1px solid #94a3b8 !important; 
+  border-top-right-radius: 6px !important;
+  border-bottom-right-radius: 6px !important;
+  color: #b22222 !important;
+  font-weight: 700 !important;
+}
+
+/* --- ETKİLEŞİM / HOVER --- */
+.reportTable tr:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(148, 163, 184, 0.2) !important; 
+  transition: all 0.2s ease !important;
+}
+
 .reportTable tr:hover td.rowCell {
   background: #fef2f2 !important;
 }
